@@ -3,6 +3,7 @@ package com.rest.webservice.provider.controller;
 import com.rest.webservice.provider.domain.Contact;
 import com.rest.webservice.provider.domain.Message;
 import com.rest.webservice.provider.service.contact.ContactService;
+import com.rest.webservice.provider.service.message.MessageService;
 import com.rest.webservice.provider.utils.exception.AlreadyExistException;
 import com.rest.webservice.provider.utils.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,8 @@ import java.util.List;
 public class ContactController {
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private MessageService messageService;
 
     @GetMapping
     public List<Contact> retrieveAllContacts() {
@@ -107,5 +110,7 @@ public class ContactController {
     public void sendMessageToContact(@PathVariable Long id, @Valid @RequestBody Message message) {
         log.info("Sending message: '{message}' to contact by id: '{id}'", message, id);
         Contact contactFromDb = contactService.getContactById(id);
+
+        messageService.sendMessage(contactFromDb, message);
     }
 }
