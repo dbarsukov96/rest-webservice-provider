@@ -11,11 +11,11 @@ public interface ContactService {
 
     Contact getContactById(Long id);
 
-    Contact getContactByName(String name);
+    List<Contact> getContactsByName(String name);
 
     Contact getContactByPhoneNumber(String phoneNumber);
 
     Contact updateContact(Contact contact);
 
-    void deleteContact(Contact contact);
+    void deleteContact(Long id);
 }
