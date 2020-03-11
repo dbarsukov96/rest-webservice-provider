@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<Contact, Long> {
-    List<Contact> findByName(String name);
+    List<Contact> findByNameStartingWith(String name);
 
     Optional<Contact> findByPhoneNumber(String phoneNumber);
 }

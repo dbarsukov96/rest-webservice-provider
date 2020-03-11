@@ -47,7 +47,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> getContactsByName(String name) {
-        List<Contact> contacts = contactRepository.findByName(name);
+        List<Contact> contacts = contactRepository.findByNameStartingWith(name);
 
         if (contacts.isEmpty())
             throw new NotFoundException(String.format("Contacts with name: '%s' was not found!", name));
